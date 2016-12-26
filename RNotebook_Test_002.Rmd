@@ -1,0 +1,58 @@
+---
+title: "R Notebook"
+output: html_notebook
+
+
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+# The "Official" R-OPTIMIZATION PAGE:
+ # http://stat.ethz.ch/R-manual/R-devel/library/stats/html/optim.html
+
+rosen <- function(xx)
+{
+ 
+  d <- length(xx)
+  xi <- xx[1:(d-1)]
+  xnext <- xx[2:d]
+	
+  sum <- sum(100*(xnext-xi^2)^2 + (xi-1)^2)
+	
+  y <- sum
+  return(y)
+}
+
+optim(par = c(-1.2,1), fn = rosen, gr = NULL,
+      method = c("Nelder-Mead"),
+      lower = -Inf, upper = Inf,
+      control = list(), hessian = FALSE)
+```
+
+```{r}
+optim(par = c(-1.2,1), fn = rosen, gr = NULL,
+      method = c("BFGS"),
+      lower = -Inf, upper = Inf,
+      control = list(), hessian = FALSE)
+```
+
+```{r}
+optim(par = c(-1.2,1), fn = rosen, gr = NULL,
+      method = c("L-BFGS"),
+      lower = -Inf, upper = Inf,
+      control = list(), hessian = FALSE)
+```
+
+```{r}
+optim(par = c(-1.2,1), fn = rosen, gr = NULL,
+      method = c("SANN"),
+      lower = -Inf, upper = Inf,
+      control = list(), hessian = FALSE)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).

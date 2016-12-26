@@ -1,0 +1,50 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+height <- c(176, 154, 138, 196, 132, 176, 181, 169, 150, 175)
+bodymass <- c(82, 49, 53, 112, 47, 69, 77, 71, 62, 78)
+plot(bodymass, height, pch = 16, cex = 1.3,
+     col = "blue", main = "HEIGHT PLOTTED AGAINST BODY MASS", 
+     xlab = "BODY MASS (kg)", ylab = "HEIGHT (cm)")
+```
+
+```{r}
+lmfit = lm( bodymass ~ height )
+lmfit
+summary(lmfit)
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+```{r}
+coef(summary(lmfit))
+coef(summary(lmfit))[2,c(1,4)]
+```
+
+```{r}
+coef(lmfit)
+```
+
+```{r}
+
+```
+
+```{r}
+plot(lmfit)
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
+```{r}
+plot(bodymass ~ height)
+z <- lm(bodymass ~ height)
+heightnew <- range(height)
+yhat <- predict(z, newdata = data.frame(height = heightnew))
+lines(yhat ~ heightnew)
+```
